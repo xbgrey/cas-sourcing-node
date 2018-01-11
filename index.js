@@ -1,6 +1,7 @@
 const express = require('express');
 const request = require('request');
 const Iconv = require('iconv-lite');
+const company = require('./module/company');
 const app = express();
 
 app.all('*', function(req, res, next) {
@@ -12,7 +13,7 @@ app.all('*', function(req, res, next) {
     else  next();
 });
 
-///Enterprise/slist
+///Enterprise/slist 商品列表
 app.get('/Enterprise/slist', (req, res) => {
     get('http://b2b.gds.org.cn'+res.req.originalUrl, 'gb2312', (error, body) => {
         if (error) {
@@ -27,7 +28,7 @@ app.get('/Enterprise/slist', (req, res) => {
 
             for (var i in listStr) {
                 var value = listStr[i];
-                try {
+                // try {
                     if (!value) {
                         continue;
                     }
@@ -47,8 +48,19 @@ app.get('/Enterprise/slist', (req, res) => {
                     sum[0].imgUrl = str;
 
                     //条码
-                    str = getA(getData(item[1], "<a", "a>")[0]);
-                    sum[0].barcode = str;
+                    str = getData(item[1], "<a", "a>");
+                    if(str){
+                        str = getA(str[0]);
+                        sum[0].barcode = str;
+                    }else{
+                        str = getData(item[1], ">", "<")[0];
+                        str = str.replace(">", '');
+                        str = str.replace("<", '');
+                        str = str.replace(/ /g, '');
+                        str = str.replace(/\r/g, '');
+                        str = str.replace(/\n/g, '');
+                        sum[0].barcode = {value:str};
+                    }
 
                     //产品名称
                     str = getData(item[2], ">", "<")[0];
@@ -92,10 +104,10 @@ app.get('/Enterprise/slist', (req, res) => {
                     //来源
                     str = getData(item[8], "<a", "a>")[0];
                     sum[0].source = getA(str);
-                } catch (error) {
-                    res.send({ status: 500 });
-                    return;
-                }
+                // } catch (error) {
+                //     res.send({ status: 500 });
+                //     return;
+                // }
             }
 
             //分页数据
@@ -123,7 +135,7 @@ app.get('/Enterprise/slist', (req, res) => {
     });
 });
 
-///Home/ProDetailService
+///Home/ProDetailService 商品信息
 app.get('/Home/ProDetailService', (req, res)=>{
     get('http://so.anccnet.com'+res.req.originalUrl, 'utf-8', (error, body) => {
         if(error){
@@ -451,6 +463,9 @@ app.get('/Home/ProDetailService', (req, res)=>{
         }
     })
 })
+
+//company 公司列表接口
+app.get('/company', company.getLiset);
 
 function getA(content) {
     var value = getData(content, ">", "<")[0];
