@@ -448,6 +448,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 send(res,{
+                    ok:true,
                     status: 200,
                     corporate,
                     factory,

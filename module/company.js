@@ -5,9 +5,9 @@ exports.getLiset=(req, res)=>{
 
     var connection = mysql.createConnection({
         host     : 'localhost',
-        user     : 'root',
-        password : 'pk6*4!Hpjk#o',
-        database : 'cas'
+        user     : 'cas',
+        password : 'paFZucY50mQf1Sn3',
+        database : 'css_company'
     });
 
     connection.connect();
@@ -32,7 +32,7 @@ exports.getLiset=(req, res)=>{
                 send(res,{ status: 500, error});
                 return;
             };
-            send(res,{ status: 200, results});
+            send(res,{ status: 200, ok: true, results});
         });
     } catch (error) {}
     connection.end();
