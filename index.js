@@ -141,7 +141,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
         if(error){
             send(res,{status:501, error});
         }else{
-            try {
+            // try {
                 var among
 
                 //企业信息
@@ -276,7 +276,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 var product = {}
 
                 among = productStr.match(/条码：[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('条码：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -284,7 +284,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/>名称[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('>名称：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -292,7 +292,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/GPC分类[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('GPC分类：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -300,7 +300,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/商品条码有效日期[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('商品条码有效日期：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -308,7 +308,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/>品牌[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('>品牌：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -316,7 +316,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/子品牌[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('子品牌：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -324,7 +324,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/特征变量[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('特征变量：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -332,7 +332,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/功能名称[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('功能名称：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -340,7 +340,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/净含量：[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('净含量：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -348,7 +348,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/净含量描述[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('净含量描述：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -356,7 +356,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/用法（食用\/使用方法）[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('用法（食用/使用方法）：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -364,7 +364,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/保质期[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('保质期：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -372,7 +372,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/注意事项\/安全提示[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('注意事项\/安全提示：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -380,7 +380,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/产品标准号[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('产品标准号：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -388,7 +388,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/贮藏条件[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('贮藏条件：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -396,7 +396,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/商品主宣传语[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('商品主宣传语：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -404,7 +404,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = productStr.match(/商品其他描述语[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('商品其他描述语：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -416,7 +416,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 var information = {}
 
                 among = informationStr.match(/产品外包装尺寸高（mm）[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('产品外包装尺寸高（mm）：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -424,7 +424,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = informationStr.match(/产品外包装尺寸深（mm）[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('产品外包装尺寸深（mm）：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -432,7 +432,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = informationStr.match(/产品外包装尺寸宽（mm）[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('产品外包装尺寸宽（mm）：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -440,7 +440,7 @@ app.get('/Home/ProDetailService', (req, res)=>{
                 }
 
                 among = informationStr.match(/产品含外包装重量（g）[^]*?<\/li>/g)
-                if(among.length){
+                if(among && among.length){
                     among = among[0];
                     among = among.replace('产品含外包装重量（g）：</p><p>','');
                     among = among.replace('</p></li>','');
@@ -458,9 +458,9 @@ app.get('/Home/ProDetailService', (req, res)=>{
                     product,
                     information
                 });
-            } catch (error) {
-                send(res,{ status: 502, error});
-            }
+            // } catch (error) {
+            //     send(res,{ status: 502, error});
+            // }
         }
     })
 })
