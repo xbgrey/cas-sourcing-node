@@ -14,17 +14,17 @@ exports.getLiset=(req, res)=>{
     try {
         var sql = ''
         var limit = ''
-        if(req.query.page){
-            var page = req.query.page*1-1;
-            limit = 'LIMIT '+20*page+',20';
-        }else{
-            limit = 'LIMIT 0,20'
-        }
+        // if(req.query.page){
+        //     var page = req.query.page*1-1;
+        //     limit = 'LIMIT '+20*page+',20';
+        // }else{
+        //     limit = 'LIMIT 0,20'
+        // }
 
         if(req.query.name){
-            sql = "select * from `cas_list` WHERE NAME LIKE '%"+req.query.name+"%'"+limit;
+            sql = "select * from `cas_list` WHERE NAME LIKE '%"+req.query.name+"%' LIMIT 1000";
         }else{
-            sql = "select * from `cas_list`"+limit;
+            sql = "select * from `cas_list`";
         }
 
         connection.query(sql, function (error, results, fields) {
