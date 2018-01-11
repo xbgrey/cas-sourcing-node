@@ -7,7 +7,7 @@ exports.getLiset=(req, res)=>{
         host     : 'localhost',
         user     : 'cas',
         password : 'paFZucY50mQf1Sn3',
-        database : 'css_company'
+        database : 'cas_company'
     });
 
     connection.connect();
