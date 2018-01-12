@@ -513,12 +513,15 @@ function getData(content, head, end) {
 function get(url, encoding, callback) {
     console.log('--->', url);
     request({ url: url, encoding: null }, (error, response, body) => {
-        if (error) {
+        try {
+            if (error) {
+                callback(error);
+            } else {
+                callback(null, Iconv.decode(body, encoding).toString());
+            }
+        } catch (error) {
             callback(error);
-        } else {
-            //gb2312 utf-8
-            callback(null, Iconv.decode(body, encoding).toString());
-        }
+        }   
     });
 }
 
